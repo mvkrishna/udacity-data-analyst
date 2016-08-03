@@ -1,0 +1,160 @@
+<head>
+   <script src="js/d3.v3.4.8.min.js"></script>
+   <script src="js/dimple.v2.1.6.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.min.css" >
+</head>
+<style>
+   *{
+   font-family: "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   }
+   p,*{
+   font-size: 18px;
+   }
+   h4{
+   font-size: 25px;
+   }
+</style>
+<html>
+   <div class="container">
+      <h1>Titanic Data Visualization</h1>
+      <hr>
+      <h4>Summary</h4>
+      <p>Dataset 'titanic_data.csv' contains demographics and passenger information from 891 of the 2224 passengers and crew on board of Titanic. I have analyzed the dataset to answer the question based on different combinations.
+         <br><br>What factors made passengers more likely to survive?
+      </p>
+      <hr>
+   </div>
+   <!-- Div to show Chart 2-->
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer1" style="height:100%;width:100%;">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+                var svg1 = dimple.newSvg("#chartContainer1", "100%", "100%");
+                d3.csv("data/survival_class_sex.csv", function (data) {
+                  var chart = new dimple.chart(svg1, data);
+                  svg1.append("text")
+                   .attr("x", chart._xPixels() + chart._widthPixels() / 2)
+                   .attr("y", chart._yPixels() )
+                   .style("text-anchor", "middle")
+                   .text("Survival rate of passengers based on Gender ");
+                var x = chart.addCategoryAxis("x", ["Sex"]);
+                //   y.showPercent = true;
+
+                var y = chart.addMeasureAxis("y", "Rate");
+                //y.showPercent = true;
+                chart.addSeries("Sex", dimple.plot.bar);
+                chart.addLegend(-200, 95, 300, 500, "left");
+                 chart.defaultColors = [
+                   new dimple.color("#ffc0cb"), new dimple.color("#add8e6"), new dimple.color("#E4F1C3")
+                 ];
+                chart.draw();
+                });
+            </script>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <hr>
+   </div>
+
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer2" style="height:100%;width:100%;">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+                var svg2 = dimple.newSvg("#chartContainer2", "100%", "100%");
+                d3.csv("data/survival_class_sex.csv", function (data) {
+                  var chart = new dimple.chart(svg2, data);
+                  svg2.append("text")
+                   .attr("x", chart._xPixels() + chart._widthPixels() / 2)
+                   .attr("y", chart._yPixels() - 5)
+                   .style("text-anchor", "middle")
+                   .text("Survival rate of passengers based on Class & Gender ");
+                var x = chart.addCategoryAxis("x", ["Class","Sex"]);
+                //   y.showPercent = true;
+
+                var y = chart.addMeasureAxis("y", "Rate");
+                //y.showPercent = true;
+                chart.addSeries("Sex", dimple.plot.bar);
+                chart.addLegend(-200, 95, 300, 500, "left");
+                 chart.defaultColors = [
+                   new dimple.color("#ffc0cb"), new dimple.color("#add8e6"), new dimple.color("#E4F1C3")
+                 ];
+                chart.draw();
+                });
+            </script>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <hr>
+   </div>
+
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer3" style="height:100%;width:100%;">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+                var svg3 = dimple.newSvg("#chartContainer3", "100%", "100%");
+                d3.csv("data/survival_embarked_sex.csv", function (data) {
+                  var chart = new dimple.chart(svg3, data);
+                  svg3.append("text")
+                   .attr("x", chart._xPixels() + chart._widthPixels() / 2)
+                   .attr("y", chart._yPixels() - 5)
+                   .style("text-anchor", "middle")
+                   .text("Survival rate of passengers based on Embarkation & Gender ");
+                var x = chart.addCategoryAxis("x", ["embarked","sex"]);
+                //   y.showPercent = true;
+
+                var y = chart.addMeasureAxis("y", "Rate");
+                //y.showPercent = true;
+                chart.addSeries("sex", dimple.plot.bar);
+                chart.addLegend(-200, 95, 300, 500, "left");
+                 chart.defaultColors = [
+                   new dimple.color("#ffc0cb"), new dimple.color("#add8e6"), new dimple.color("#E4F1C3")
+                 ];
+                chart.draw();
+                });
+            </script>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <hr>
+   </div>
+
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer4" style="height:100%;width:100%;">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+                var svg4 = dimple.newSvg("#chartContainer4", "100%", "100%");
+                d3.csv("data/survival_age_sex.csv", function (data) {
+                  var chart = new dimple.chart(svg4, data);
+                  svg4.append("text")
+                   .attr("x", chart._xPixels() + chart._widthPixels() / 2)
+                   .attr("y", chart._yPixels() - 5)
+                   .style("text-anchor", "middle")
+                   .text("Survival rate of passengers based on Age group & Gender ");
+                var x = chart.addCategoryAxis("x", ["Age","Sex"]);
+                //   y.showPercent = true;
+
+                var y = chart.addMeasureAxis("y", "Rate");
+                //y.showPercent = true;
+                chart.addSeries("Sex", dimple.plot.bar);
+                chart.addLegend(-200, 95, 300, 500, "left");
+                 chart.defaultColors = [
+                   new dimple.color("#ffc0cb"), new dimple.color("#add8e6"), new dimple.color("#E4F1C3")
+                 ];
+                chart.draw();
+                });
+            </script>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <hr>
+   </div>
+
+</html>

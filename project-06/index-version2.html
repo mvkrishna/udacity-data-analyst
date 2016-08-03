@@ -1,0 +1,129 @@
+<head>
+   <script src="js/d3.v3.4.8.min.js"></script>
+   <script src="js/dimple.v2.1.6.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.min.css" >
+</head>
+<style>
+   *{
+   font-family: "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   }
+   p,*{
+   font-size: 18px;
+   }
+   h4{
+   font-size: 25px;
+   }
+</style>
+<html>
+   <div class="container">
+      <h1>Titanic Data Visualization</h1>
+      <hr>
+      <h4>Summary</h4>
+      <p>Dataset 'titanic_data.csv' contains demographics and passenger information from 891 of the 2224 passengers and crew on board of Titanic. I have analyzed the dataset to answer the question based on different combinations.
+         <br><br>What factors made passengers more likely to survive?
+      </p>
+      <hr>
+   </div>
+   <!-- Div to show Chart 2-->
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer1">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+               var svg1 = dimple.newSvg("#chartContainer1", "100%", "60%");
+               d3.csv("data/titanic_data.csv", function (data) {
+               var chart = new dimple.chart(svg1, data);
+               //Set chart title
+               svg1.append("text")
+               .attr("x", chart._xPixels() + chart._widthPixels() / 2)
+               .attr("y", chart._yPixels() - 45)
+               .style("text-anchor", "middle")
+               .style("font-size", "18px")
+               .text("Passengers who survived based on Class & Gender ");
+                var x = chart.addCategoryAxis("x", "Class");
+                x.addOrderRule(["First Class", "Second Class", "Third Class"]);
+                var y = chart.addMeasureAxis("y", "Survived");
+                y.showPercent = true;
+                chart.addSeries("Sex", dimple.plot.bar);
+                chart.addLegend(-200, 6, 300, 500, "left");
+
+               chart.defaultColors = [
+                 new dimple.color("#ffc0cb"), new dimple.color("#add8e6"), new dimple.color("#E4F1C3")
+               ];
+                chart.draw();
+                });
+            </script>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <hr>
+   </div>
+   <!-- Div to show Chart 3-->
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer3">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+               var svg2 = dimple.newSvg("#chartContainer3","100%", "100%");
+                d3.csv("data/titanic_data.csv", function (data) {
+                 var myChart = new dimple.chart(svg2, data);
+                 //Set chart title
+                 svg2.append("text")
+                 .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
+                 .attr("y", myChart._yPixels() - 45)
+                 .style("text-anchor", "middle")
+                 .style("font-size", "18px")
+                 .text("Passengers who survived based on Age and Class ");
+                 var x = myChart.addCategoryAxis("x", "Age");                 //Order based on Age
+                 x.addOrderRule("Age");
+
+                 var y = myChart.addMeasureAxis("y", "Survived");
+                 y.showPercent = true;
+                 var s = myChart.addSeries(["Class"], dimple.plot.bar);
+                 s.addOrderRule(["First Class", "Second Class", "Third Class"]);
+
+                 var leg = myChart.addLegend(-300, 50, 300, 500, "left");
+                 myChart.defaultColors = [
+                   new dimple.color("#9EBF6D"), new dimple.color("#BAD696"), new dimple.color("#E4F1C3")
+                 ];
+                 myChart.draw();
+
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+   <!-- Div to show Chart 3-->
+   <div class="container">
+      <div class="row">
+         <div id="chartContainer3">
+            <script type="text/javascript">
+               //Get the chart element and set the size
+               var svg3 = dimple.newSvg("#chartContainer3","100%", "100%");
+                d3.csv("data/titanic_data.csv", function (data) {
+                 var myChart = new dimple.chart(svg3, data);
+                 //Set chart title
+                 svg3.append("text")
+                 .attr("x", myChart._xPixels() + myChart._widthPixels() / 2)
+                 .attr("y", myChart._yPixels() - 45)
+                 .style("text-anchor", "middle")
+                 .style("font-size", "18px")
+                 .text("Passengers who survived based on Age and Embarked from");
+                 var x = myChart.addCategoryAxis("x", "Age");                 //Order based on Age
+                 x.addOrderRule("Age");
+
+                 var y = myChart.addMeasureAxis("y", "Survived");
+                 y.showPercent = true;
+                 var s = myChart.addSeries(["Embarked"], dimple.plot.bar);
+                 s.addOrderRule(["First Class", "Second Class", "Third Class"]);
+
+                 var leg = myChart.addLegend(-300, 50, 300, 500, "left");
+                 myChart.draw();
+
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+</html>
